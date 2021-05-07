@@ -10,14 +10,14 @@ export default function FetchWeather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&appid=${api_key}`;
 
   const date = new Date();
-  const currentDate = date
-    .toLocaleString("default", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    })
-    .toUpperCase();
+  const currentDate = date.toLocaleString("default", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  const dateCapitalized = currentDate[0].toUpperCase() + currentDate.slice(1);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,7 +59,7 @@ export default function FetchWeather() {
             <Text align="center" className="city">
               {weather.name}
             </Text>
-            <Text align="center">{currentDate}</Text>
+            <Text align="center">{dateCapitalized}</Text>
             <Heading as="h1" size="4xl" align="center">
               {weather.main.temp}°
             </Heading>
