@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Input, Heading, Text, Box } from "@chakra-ui/react";
+import { Container, Input, Heading, Text, Box, Image } from "@chakra-ui/react";
 
 export default function FetchWeather() {
   const [query, setQuery] = useState("");
@@ -37,12 +37,13 @@ export default function FetchWeather() {
 
   return (
     <Box bg="#243755" h="100vh">
-      <Heading as="h1" size="2xl" align="center" pt={3} color="#fff">
-        The Weather Canal{" "}
+      <Heading as="h1" size="2xl" align="center" pt={10} color="#fff">
+        The Weather Canal
       </Heading>
       <Container centerContent className="container">
         <form onSubmit={handleSubmit}>
           <Input
+            variant="filled"
             boxShadow="md"
             p="6"
             rounded="md"
@@ -57,15 +58,28 @@ export default function FetchWeather() {
         {typeof weather.main != "undefined" ? (
           <Box boxShadow="md" p="6" rounded="md" bg="#32425C" color="#fff">
             <Text align="center" className="city">
-              {weather.name}
+              {weather.name}, {weather.sys.country}
             </Text>
             <Text align="center">{dateCapitalized}</Text>
-            <Heading as="h1" size="4xl" align="center">
-              {weather.main.temp}°
+            <Box align="center">
+              <Image
+                boxSize="120px"
+                src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                alt="weather icon"
+              />
+              <Text fontSize="xl" align="center" mb={7}>
+                {weather.weather[0].main}
+              </Text>
+            </Box>
+            <Heading as="h1" size="4xl" align="center" mb={2}>
+              {weather.main.temp}℃
             </Heading>
-            <Text align="center">Feels like {weather.main.feels_like}°</Text>
+            <Text align="center" mb={2}>
+              Feels like {weather.main.feels_like}℃
+            </Text>
             <Text align="center">
-              Today's max/min: {weather.main.temp_max}°/{weather.main.temp_min}°
+              Today's max/min: {weather.main.temp_max}℃ /{" "}
+              {weather.main.temp_min}℃
             </Text>
           </Box>
         ) : (
