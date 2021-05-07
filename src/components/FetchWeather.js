@@ -57,13 +57,13 @@ export default function FetchWeather() {
         </form>
         {typeof weather.main != "undefined" ? (
           <Box boxShadow="md" p="6" rounded="md" bg="#32425C" color="#fff">
-            <Text align="center" className="city">
+            <Text fontSize="4xl" align="center" className="city">
               {weather.name}, {weather.sys.country}
             </Text>
             <Text align="center">{dateCapitalized}</Text>
             <Box align="center">
               <Image
-                boxSize="120px"
+                boxSize="200px"
                 src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                 alt="weather icon"
               />
@@ -71,15 +71,15 @@ export default function FetchWeather() {
                 {weather.weather[0].main}
               </Text>
             </Box>
-            <Heading as="h1" size="4xl" align="center" mb={2}>
-              {weather.main.temp}℃
+            <Heading as="h1" size="4xl" align="center" mb={2} ml={6}>
+              {Math.round(weather.main.temp)}°
             </Heading>
             <Text align="center" mb={2}>
-              Feels like {weather.main.feels_like}℃
+              Feels like {Math.round(weather.main.feels_like)}°
             </Text>
             <Text align="center">
-              Today's max/min: {weather.main.temp_max}℃ /{" "}
-              {weather.main.temp_min}℃
+              Today's max/min: {Math.round(weather.main.temp_max)}° /{" "}
+              {Math.round(weather.main.temp_min)}°
             </Text>
           </Box>
         ) : (
