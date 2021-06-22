@@ -55,8 +55,15 @@ export default function FetchWeather() {
             onChange={handleChange}
           ></Input>
         </form>
-        {typeof weather.main != "undefined" ? (
-          <Box boxShadow="md" p="6" rounded="md" bg="#32425C" color="#fff">
+        {typeof weather.main != "undefined" && (
+          <Box
+            boxShadow="md"
+            p="6"
+            rounded="md"
+            bg="#32425C"
+            color="#fff"
+            mb="10"
+          >
             <Text fontSize="4xl" align="center" className="city">
               {weather.name}, {weather.sys.country}
             </Text>
@@ -82,8 +89,6 @@ export default function FetchWeather() {
               {Math.round(weather.main.temp_min)}°
             </Text>
           </Box>
-        ) : (
-          ""
         )}
       </Container>
     </Box>
